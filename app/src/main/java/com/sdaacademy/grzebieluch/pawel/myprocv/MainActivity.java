@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -82,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        // getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, ContactFragment.newInstance()).commit();
 
         setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
         // CvRow homeAdress = new CvRow(this, "54-317 Wrocław, Majakowskiego 44/19", R.drawable.ic_my_location_24dp);
 //        CvRow test = new CvRow(this,  "Test row", R.drawable.mydrawnface);
 //        CvRow test2 = new CvRow(this, "Test row", R.drawable.mydrawnface);
@@ -140,7 +144,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case  R.id.mainActivityMenuSettings:
+                InfoFragment.newInstance().show(getSupportFragmentManager(),"");
+                break;
+        }
 
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

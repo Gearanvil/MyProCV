@@ -3,37 +3,37 @@
 
     <item
         android:id="@+id/navigationMenuContact"
-        android:title="Kontakt"
+        android:title="@string/kontakt"
         android:icon="@drawable/ic_contact_phone_black_24dp"
 
         />
     <item
     android:id="@+id/navigationMenuSkills"
-    android:title="Umiejętności"
+    android:title="@string/umiejetnosci"
     android:icon="@drawable/ic_build_black_24dp"
 
     />
     <item
         android:id="@+id/navigationMenuExp"
-        android:title="Doświadczenie"
+        android:title="@string/doswiadczenie"
         android:icon="@drawable/ic_work_black_24dp"
 
         />
     <item
         android:id="@+id/navigationMenuEducation"
-        android:title="Wykształcenie"
+        android:title="@string/wyksztalcenie"
         android:icon="@drawable/ic_school_black_24dp"
 
         />
     <item
         android:id="@+id/navigationMenuHobby"
-        android:title="Hobby"
+        android:title="@string/hobby"
         android:icon="@drawable/ic_directions_bike_black_24dp"
 
         />
     <item
         android:id="@+id/navigationMenuSend"
-        android:title="Formularz"
+        android:title="@string/formularz"
         android:icon="@drawable/ic_send_form_24dp"
 
         />

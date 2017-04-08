@@ -2,5 +2,10 @@
     <string name="app_name">MyProCV</string>
 
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="doswiadczenie">Doświadczenie</string>
+    <string name="umiejetnosci">Umiejętności</string>
+    <string name="kontakt">Kontakt</string>
+    <string name="wyksztalcenie">Wykształcenie</string>
+    <string name="hobby" translatable="false">Hobby</string>
+    <string name="formularz">Formularz</string>
 </resources>
