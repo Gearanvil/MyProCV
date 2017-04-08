@@ -31,6 +31,12 @@
         android:icon="@drawable/ic_directions_bike_black_24dp"
 
         />
+    <item
+        android:id="@+id/navigationMenuSend"
+        android:title="Formularz"
+        android:icon="@drawable/ic_send_form_24dp"
+
+        />
 
 
 </menu>

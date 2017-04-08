@@ -41,7 +41,12 @@ public class SchoolFragment extends Fragment {
 
     public void setupRows() {
         CvRow[] cvRows = new CvRow[]{
-                new CvRow(getActivity(), new NoActionItem("WSZ Edukacja we Wrocławiu", R.drawable.ic_school_black_24dp))
+                new CvRow(
+                        getActivity(),
+                        new NoActionItem("WSZ Edukacja we Wrocławiu \n" +
+                                "Kierunek: Informatyka, Specjalizacja: Grafika komputerowa\n" +
+                                "2012-2015",
+                                R.drawable.ic_school_black_24dp))
         };
         for (CvRow cvRow : cvRows) {
             rowHolder.addView(cvRow);

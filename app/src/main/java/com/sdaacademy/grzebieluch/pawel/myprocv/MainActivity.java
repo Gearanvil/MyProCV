@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.getMenu().performIdentifierAction(R.id.navigationMenuContact,0);
 
        //setupRows();
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, ContactFragment.newInstance()).commit();
+       // getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, ContactFragment.newInstance()).commit();
 
         setSupportActionBar(toolbar);
         // CvRow homeAdress = new CvRow(this, "54-317 Wrocław, Majakowskiego 44/19", R.drawable.ic_my_location_24dp);
@@ -148,11 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar.setTitle(item.getTitle());
 
-        for (int i = 0; i < navigationView.getMenu().size(); i++) {
-            if (navigationView.getMenu().getItem(i).isChecked()) {
-                navigationView.getMenu().getItem(i).setChecked(false);
-            }
-        }
+        uncheckMenuItems();
         item.setChecked(true);
 
 
@@ -175,6 +171,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navigationMenuHobby:
                 Toast.makeText(this, "Hobby", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.navigationMenuSend:
+                fragment=FormFragment.newInstance();
+                break;
 
         }
         getSupportFragmentManager()
@@ -182,6 +181,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.mainActivityContainer, fragment)
                 .commit();
         return false;
+    }
+
+    private void uncheckMenuItems() {
+        for (int i = 0; i < navigationView.getMenu().size(); i++) {
+            if (navigationView.getMenu().getItem(i).isChecked()) {
+                navigationView.getMenu().getItem(i).setChecked(false);
+            }
+        }
     }
 
 //    private void startNewIntent(String action, String data) {
