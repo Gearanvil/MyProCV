@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         setupRows();
-
+        setSupportActionBar(toolbar);
 
         // CvRow homeAdress = new CvRow(this, "54-317 Wrocław, Majakowskiego 44/19", R.drawable.ic_my_location_24dp);
 //        CvRow test = new CvRow(this,  "Test row", R.drawable.mydrawnface);
@@ -124,19 +124,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_activity_menu,menu);
+        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     private void setupRows() {
-        CvRow telefon = new CvRow(this, new PhoneItem("Moj numer telefonu", R.drawable.ic_call_black_24dp, "506021570"));
-        CvRow emailAdress = new CvRow(this,
-                new EmailItem("Moj Email", R.drawable.ic_mail_outline_black_24dp, new String[]{"grzebieluch.pawel@gmail.com"}, "Email from MyProCV"));
-        CvRow gitHub = new CvRow(this, new WebItem("GitHub, Gearanvil", R.drawable.git_icon, "http://wp.pl"));
+//        CvRow telefon = new CvRow(this, new PhoneItem("Moj numer telefonu", R.drawable.ic_call_black_24dp, "506021570"));
+//        CvRow emailAdress = new CvRow(this,
+//                new EmailItem("Moj Email", R.drawable.ic_mail_outline_black_24dp, new String[]{"grzebieluch.pawel@gmail.com"}, "Email from MyProCV"));
+//        CvRow gitHub = new CvRow(this, new WebItem("GitHub, Gearanvil", R.drawable.git_icon, "http://wp.pl"));
 
-        rowHolder.addView(telefon);
-        rowHolder.addView(emailAdress);
-        rowHolder.addView(gitHub);
+//        rowHolder.addView(telefon);
+//        rowHolder.addView(emailAdress);
+//        rowHolder.addView(gitHub);
+
+        CvRow [] cvRows = new CvRow[]{
+                new CvRow(this, new PhoneItem("Moj numer telefonu", R.drawable.ic_call_black_24dp, "506021570")),
+                new CvRow(this,
+                        new EmailItem("Moj Email", R.drawable.ic_mail_outline_black_24dp, new String[]{"grzebieluch.pawel@gmail.com"}, "Email from MyProCV")),
+                new CvRow(this, new WebItem("GitHub, Gearanvil", R.drawable.git_icon, "http://wp.pl"))
+
+        };
+        for (CvRow cvRow : cvRows) {
+            rowHolder.addView(cvRow);
+        }
     }
 
     @Override

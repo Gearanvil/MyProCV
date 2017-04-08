@@ -5,5 +5,7 @@
         android:id="@+id/mainActivityMenuSettings"
         android:icon="@drawable/ic_build_black_24dp"
         app:showAsAction="always"
-        android:title="Ustawienia" />
+        android:title="Ustawienia"
+
+        />
 </menu>
