@@ -2,11 +2,15 @@ package com.sdaacademy.grzebieluch.pawel.myprocv;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -20,12 +24,16 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.mainActivityRowHolder)
-    LinearLayout rowHolder;
+    //    @BindView(R.id.mainActivityRowHolder)
+//    LinearLayout rowHolder;
     @BindView(R.id.mainActivityToolbar)
     Toolbar toolbar;
     @BindView(R.id.mainActivityNavigationView)
     NavigationView navigationView;
+    @BindView(R.id.mainActivityDrawerLayout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.mainActivityContainer)
+    FrameLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +73,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //  LinearLayout linearLayout = (LinearLayout) findViewById(R.id.mainActivityRowHolder);
+
+
         navigationView.setNavigationItemSelectedListener(this);
 
-        setupRows();
-        setSupportActionBar(toolbar);
 
+       //setupRows();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, ContactFragment.newInstance()).commit();
+
+        setSupportActionBar(toolbar);
         // CvRow homeAdress = new CvRow(this, "54-317 Wrocław, Majakowskiego 44/19", R.drawable.ic_my_location_24dp);
 //        CvRow test = new CvRow(this,  "Test row", R.drawable.mydrawnface);
 //        CvRow test2 = new CvRow(this, "Test row", R.drawable.mydrawnface);
@@ -128,41 +140,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void setupRows() {
-//        CvRow telefon = new CvRow(this, new PhoneItem("Moj numer telefonu", R.drawable.ic_call_black_24dp, "506021570"));
-//        CvRow emailAdress = new CvRow(this,
-//                new EmailItem("Moj Email", R.drawable.ic_mail_outline_black_24dp, new String[]{"grzebieluch.pawel@gmail.com"}, "Email from MyProCV"));
-//        CvRow gitHub = new CvRow(this, new WebItem("GitHub, Gearanvil", R.drawable.git_icon, "http://wp.pl"));
 
-//        rowHolder.addView(telefon);
-//        rowHolder.addView(emailAdress);
-//        rowHolder.addView(gitHub);
-
-        CvRow [] cvRows = new CvRow[]{
-                new CvRow(this, new PhoneItem("Moj numer telefonu", R.drawable.ic_call_black_24dp, "506021570")),
-                new CvRow(this,
-                        new EmailItem("Moj Email", R.drawable.ic_mail_outline_black_24dp, new String[]{"grzebieluch.pawel@gmail.com"}, "Email from MyProCV")),
-                new CvRow(this, new WebItem("GitHub, Gearanvil", R.drawable.git_icon, "http://wp.pl"))
-
-        };
-        for (CvRow cvRow : cvRows) {
-            rowHolder.addView(cvRow);
-        }
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        drawerLayout.closeDrawer(Gravity.LEFT);
+
         toolbar.setTitle(item.getTitle());
+
+        for (int i = 0; i < navigationView.getMenu().size(); i++) {
+            if (navigationView.getMenu().getItem(i).isChecked()) {
+                navigationView.getMenu().getItem(i).setChecked(false);
+            }
+        }
+        item.setChecked(true);
+
+
+
+        Fragment fragment = null;
 
         switch (item.getItemId()) {
             case R.id.navigationMenuContact:
-                Toast.makeText(this, "Dane kontaktowe", Toast.LENGTH_SHORT).show();
+               fragment = ContactFragment.newInstance();
                 break;
             case R.id.navigationMenuEducation:
-                Toast.makeText(this, "Wykształcenie", Toast.LENGTH_SHORT).show();
+                fragment=SchoolFragment.newInstance();
                 break;
             case R.id.navigationMenuExp:
-                Toast.makeText(this, "Doświadczenie", Toast.LENGTH_SHORT).show();
+                fragment=ExpFragment.newInstance();
                 break;
             case R.id.navigationMenuSkills:
                 Toast.makeText(this, "Umiejętności", Toast.LENGTH_SHORT).show();
@@ -172,6 +177,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
         }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainActivityContainer, fragment)
+                .commit();
         return false;
     }
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:id="@+id/mainActivityDrawerLayout">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +20,8 @@
             android:id="@+id/mainActivityToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/primary_dark" />
+            android:background="@color/primary_dark"
+            app:titleTextColor="@color/icons"/>
 
 
         <RelativeLayout
@@ -37,7 +39,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#98000000"></FrameLayout>
+                android:background="#98000000"/>
 
         </RelativeLayout>
 
@@ -46,13 +48,12 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:background="@color/divider">
-
-            <LinearLayout
-                android:id="@+id/mainActivityRowHolder"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="8dp" />
+                android:id="@+id/mainActivityContainer"
+                android:layout_height="wrap_content"/>
+
+
         </ScrollView>
     </LinearLayout>
 

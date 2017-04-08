@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.sdaacademy.grzebieluch.pawel.myprocv.Model.CvItem;
 import com.sdaacademy.grzebieluch.pawel.myprocv.Model.EmailItem;
+import com.sdaacademy.grzebieluch.pawel.myprocv.Model.NoActionItem;
 import com.sdaacademy.grzebieluch.pawel.myprocv.Model.PhoneItem;
 import com.sdaacademy.grzebieluch.pawel.myprocv.Model.WebItem;
 
@@ -30,9 +31,8 @@ public class CvRow extends LinearLayout {
         addViews(iconField, textField);
 
 
-
         if (cvItem instanceof WebItem) {
-           final WebItem webItem = (WebItem) cvItem;
+            final WebItem webItem = (WebItem) cvItem;
 
 
             this.setOnClickListener(new OnClickListener() {
@@ -44,7 +44,7 @@ public class CvRow extends LinearLayout {
             });
         }
         if (cvItem instanceof PhoneItem) {
-           final PhoneItem phoneItem = (PhoneItem) cvItem;
+            final PhoneItem phoneItem = (PhoneItem) cvItem;
 
 
             this.setOnClickListener(new OnClickListener() {
@@ -56,7 +56,7 @@ public class CvRow extends LinearLayout {
             });
         }
         if (cvItem instanceof EmailItem) {
-           final EmailItem emailItem = (EmailItem) cvItem;
+            final EmailItem emailItem = (EmailItem) cvItem;
 
 
             this.setOnClickListener(new OnClickListener() {
@@ -67,8 +67,21 @@ public class CvRow extends LinearLayout {
                 }
             });
         }
+        if (cvItem instanceof NoActionItem) {
+            final NoActionItem noActionItem = (NoActionItem) cvItem;
+
+
+            this.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    noActionItem.performAction(context);
+                }
+            });
+        }
 
     }
+
 
     private void addViews(ImageView iconField, TextView textField) {
         addView(iconField);
@@ -114,6 +127,7 @@ public class CvRow extends LinearLayout {
         float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return (int) dp;
     }
+
     private void setListeners(final Context context, CvItem cvItem) {
         if (cvItem instanceof WebItem) {
             final WebItem webItem = (WebItem) cvItem;
